@@ -1,0 +1,16 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">Edit a post</h1>
+    <form action="/posts/<%= post.id %>?_method=PATCH" method="POST" data-test="form">
+      <div class="form">
+        <div class="form-body">
+          <% errors.forEach(error => { %>
+            <div class="form-error" data-test="error-<%= error.param %>"><%= error.msg %></div>
+          <% }) %>
+          <textarea name="content" data-test="textarea-content"><%= post.content %></textarea>
+          <input type="submit" value="Save" data-test="submit">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

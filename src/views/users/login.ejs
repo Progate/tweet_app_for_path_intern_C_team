@@ -1,0 +1,20 @@
+<div class="main users-new">
+  <div class="container">
+    <h2 class="form-heading" data-test="form-heading">Log in</h2>
+    <div class="form users-form">
+      <div class="form-body">
+        <% errors.forEach(error=> { %>
+          <div class="form-error" data-test="error-<%= error.param %>"><%= error.msg %></div>
+        <% }) %>
+        <form action="/login" method="POST" data-test="form">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" value="<%= email %>" data-test="input-email">
+          <label for="password">Password</label>
+          <input id="password" type="password" type="password" name="password" value="<%= password %>"
+            autocomplete="off" data-test="input-password">
+          <input type="submit" value="Log in" data-test="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

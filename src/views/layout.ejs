@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TweetApp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+      <a href="<%= currentUser ? '/posts' : '/' %>" data-test="header-logo">TweetApp</a>
+    </div>
+    <ul class="header-menus">
+      <% if(currentUser) { %>
+        <li><a href="/users/<%= currentUser.id %>" data-test="header-link-mypage"><%= currentUser.name %></a></li>
+        <li><a href="/posts" data-test="header-link-posts-index">Posts</a></li>
+        <li><a href="/posts/new" data-test="header-link-posts-new">New post</a></li>
+        <li><a href="/users" data-test="header-link-users-index">Users</a></li>
+        <li>
+          <form action="/logout?_method=DELETE" method="POST" class="form-logout">
+            <input type="submit" value="Log out" data-test="header-link-logout">
+          </form>
+        </li>
+      <% } else { %>
+        <li><a href="/about" data-test="header-link-about">About</a></li>
+        <li><a href="/signup" data-test="header-link-signup">Sign up</a></li>
+        <li><a href="/login" data-test="header-link-login">Log in</a></li>
+      <% } %>
+    </ul>
+  </header>
+  <% if(dialogMessage) { %>
+    <div class="dialog" data-test="dialog"><%= dialogMessage %></div>
+  <% } %>
+  <%- body %>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div data-test="posts-container">
+  <% timeline.forEach(timelineItem => { %>
+    <div class="posts-index-item" data-test="post-<%= timelineItem.post.id %>">
+      <div class="post-left">
+        <img src="<%= timelineItem.post.user.imageName %>">
+      </div>
+      <div class="post-right">
+        <% if(timelineItem.type==="retweet" ){ %>
+          <span class="post-label" data-test="post-label"><%= timelineItem.user.name %> Retweeted</span>
+        <% } %>
+        <div class="post-user-name">
+          <a href="/users/<%= timelineItem.post.user.id %>" data-test="post-item-user">
+            <%= timelineItem.post.user.name %>
+          </a>
+        </div>
+        <a href="/posts/<%= timelineItem.post.id %>" data-test="post-item-content">
+          <%= timelineItem.post.content %>
+        </a>
+      </div>
+    </div>
+    <% }) %>
+</div>

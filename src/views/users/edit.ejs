@@ -1,0 +1,21 @@
+<div class="main users-new">
+  <div class="container">
+    <h2 class="form-heading">Edit Account</h2>
+    <div class="form users-form">
+      <div class="form-body">
+        <% errors.forEach(error=> { %>
+          <div class="form-error" data-test="error-<%= error.param %>"><%= error.msg %></div>
+        <% }) %>
+        <form action="/users/<%= user.id %>?_method=PATCH" method="POST" enctype="multipart/form-data" data-test="form">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" value="<%= user.name %>" data-test="input-name">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" value="<%= user.email %>" data-test="input-email">
+          <label for="image">Image</label>
+          <input id="image" type="file" name="image" data-test="input-image">
+          <input type="submit" value="Save" data-test="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

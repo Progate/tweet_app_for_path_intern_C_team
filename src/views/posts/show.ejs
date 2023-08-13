@@ -1,0 +1,58 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <div class="post-user-name">
+        <img class="posts-show-item-image" src="<%= post.user.imageName %>" data-test="user-image">
+        <a href="/users/<%= post.user.id %>" data-test="user-name"><%= post.user.name %></a>
+      </div>
+      <p data-test="post-content">
+        <%= post.content %>
+      </p>
+      <div class="post-time" data-test="post-time">
+        <%= formatDate(post.createdAt) %>
+      </div>
+      <% if(!hasLiked){ %>
+        <form action="/posts/<%= post.id %>/likes" method="POST" data-test="form-like">
+          <button type="submit" data-test="submit-like" class="like-btn like">
+            <span class="material-icons" data-test="favorite-icon">favorite_border</span>
+          </button>
+        </form>
+      <% } else { %>
+      <form action="/posts/<%= post.id %>/likes?_method=DELETE" method="POST" data-test="form-like">
+        <button type="submit" data-test="submit-like" class="like-btn unlike">
+          <span class="material-icons" data-test="favorite-icon">favorite</span>
+        </button>
+      </form>
+      <% } %>
+      <span data-test="like-count"><%= likeCount %></span>
+      <% if(!hasRetweeted){ %>
+        <form action="/posts/<%= post.id %>/retweets" method="POST" data-test="form-retweet">
+          <button type="submit" data-test="submit-retweet" class="retweet-btn">
+            <span class="material-icons">
+              swap_horiz
+            </span>
+          </button>
+        </form>
+      <% } else { %>
+        <form action="/posts/<%= post.id %>/retweets?_method=DELETE" method="POST" data-test="form-retweet">
+          <button type="submit" data-test="submit-retweet" class="retweet-btn has-retweeted">
+            <span class="material-icons">
+              swap_horiz
+            </span>
+          </button>
+        </form>
+      <% } %>
+      <span data-test="retweet-count">
+        <%= retweetCount %>
+      </span>
+      <% if(post.user.id === currentUser.id) { %>
+        <div class="post-menus">
+          <a href="/posts/<%= post.id %>/edit" data-test="post-link-edit">Edit</a>
+          <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" data-test="form-like-delete">
+            <input type="submit" value="Delete" data-test="submit-post-delete">
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

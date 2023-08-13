@@ -1,0 +1,21 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= user.imageName %>" data-test="user-image">
+      <h2 data-test="user-name"><%= user.name %></h2>
+      <p data-test="user-email"><%= user.email %></p>
+      <% if(currentUser.id === user.id) { %>
+        <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
+      <% } %>
+    </div>
+    <ul class="user-tabs">
+      <li class="active">
+        <a href="<%= `/users/${user.id}` %>">Posts</a>
+      </li>
+      <li>
+        <a href="<%= `/users/${user.id}/likes` %>">Likes</a>
+      </li>
+    </ul>
+    <%- include('../_timeline', {timeline: timeline}); %>
+  </div>
+</div>

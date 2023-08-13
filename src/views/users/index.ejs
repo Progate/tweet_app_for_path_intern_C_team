@@ -1,0 +1,15 @@
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">All Users</h1>
+    <% users.forEach(user => { %>
+      <div class="users-index-item">
+        <div class="user-left">
+          <img src="<%= user.imageName %>" data-test="user-item-image">
+        </div>
+        <div class="user-right">
+          <a href="/users/<%= user.id %>" data-test="user-item-link"><%= user.name %></a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>

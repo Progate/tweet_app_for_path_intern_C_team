@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @map("user_id") @id @default(autoincrement())
+  email String  @unique
+  name  String
+  imageName String @map("image_name")
+  password String
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @default(now())
+  posts Post[]
+  likes Like[]
+  retweets Retweet[]
+  @@map("users")
+}
+
+model Post {
+  id        Int @map("post_id")    @id @default(autoincrement())
+  content   String
+  user    User    @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId  Int @map("user_id") 
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @default(now())
+  likes Like[]
+  retweets Retweet[]
+  @@map("posts")
+}
+
+model Like {
+  user    User    @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId  Int     @map("user_id") 
+  post    Post    @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postId  Int     @map("post_id") 
+  createdAt DateTime @map("created_at") @default(now())
+  @@id([userId, postId])
+  @@map("likes")
+}
+
+model Retweet {
+  user    User    @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId  Int     @map("user_id") 
+  post    Post    @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postId  Int     @map("post_id") 
+  retweetedAt DateTime @map("retweeted_at") @default(now())
+  @@id([userId, postId])
+  @@map("retweets")
+}
