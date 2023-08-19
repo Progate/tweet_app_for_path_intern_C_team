@@ -4,9 +4,27 @@
       <img src="<%= user.imageName %>" data-test="user-image">
       <h2 data-test="user-name"><%= user.name %></h2>
       <p data-test="user-email"><%= user.email %></p>
+
+      <!-- Follwers | Followings -->
+      <div class="follow">
+      <p1 data-test="user-name">4 Followers</p1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+        <path d="M1 0V24" stroke="#9E9E9E" stroke-width="0.5"/>
+      </svg>
+      <p1 data-test="user-name">3 Following</p1>
+      </div>
+
+      <!-- 他人のページの場合だけFollowボタン -->
       <% if(currentUser.id === user.id) { %>
         <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
-      <% } %>
+      <% } else { %>
+        <div class="button">
+        <div class="follow-button">
+        Follow
+        </div>
+      </div>
+      <% } %> 
+
     </div>
     <ul class="user-tabs">
       <li class="active">
