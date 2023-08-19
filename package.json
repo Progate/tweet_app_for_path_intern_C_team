@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "test:db_connection": "ts-node db/connection_test.ts",
     "test:e2e": "npm run db:reset:test && npm run db:seed:test && dotenv -e .env.test -- jest -c ./e2e/jest.config.js",
     "test:retweet": "npm run test:e2e -- usecases/retweet_post.ts -t 'Retweet post'",
     "test:retweet_btn": "npm run test:e2e -- post/show.ts -t 'Post show page after sign in retweet button is displayed'",
