@@ -11,7 +11,7 @@ describe("Login", () => {
     });
     test("display post index page and dialog message [zsq4Sv5XWq5PwTRMmV4hW]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
       expect(message).toBe("You have logged in successfully");
@@ -35,10 +35,10 @@ describe("Login", () => {
         page.click("[data-test=submit]"),
       ]);
       const emailError = await page.$eval("[data-test=error-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const passwordError = await page.$eval("[data-test=error-password", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(emailError).toBe("Email can't be blank");
       expect(passwordError).toBe("Password can't be blank");
@@ -52,7 +52,7 @@ describe("Login", () => {
         page.click("[data-test=submit]"),
       ]);
       const incorrectError = await page.$eval("[data-test=error-custom]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(incorrectError).toBe("Invalid email/password combination");
     });
@@ -65,7 +65,7 @@ describe("Login", () => {
         page.click("[data-test=submit]"),
       ]);
       const incorrectError = await page.$eval("[data-test=error-custom]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(incorrectError).toBe("Invalid email/password combination");
     });

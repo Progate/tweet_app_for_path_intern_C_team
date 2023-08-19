@@ -27,7 +27,7 @@ export class DialogMessage {
 
 export const dialogMessageMiddleware: RequestHandler = (req, res, next) => {
   req.dialogMessage = new DialogMessage(
-    req.session as DialogMessageSessionOrNullish
+    req.session as DialogMessageSessionOrNullish,
   );
   const message = req.dialogMessage.takeMessage();
   res.locals.dialogMessage = message;

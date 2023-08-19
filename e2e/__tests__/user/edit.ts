@@ -13,19 +13,19 @@ describe("User edit page", () => {
     test("set form values [j09d7KZm4iIOL7N6BAv6_]", async () => {
       const action = await page.$eval(
         "[data-test=form]",
-        el => (el as HTMLFormElement).action
+        el => (el as HTMLFormElement).action,
       );
       const name = await page.$eval(
         "[data-test=input-name]",
-        el => (el as HTMLInputElement).value
+        el => (el as HTMLInputElement).value,
       );
       const email = await page.$eval(
         "[data-test=input-email]",
-        el => (el as HTMLInputElement).value
+        el => (el as HTMLInputElement).value,
       );
       const value = await page.$eval(
         "[data-test=submit]",
-        el => (el as HTMLInputElement).value
+        el => (el as HTMLInputElement).value,
       );
       expect(new URL(action).pathname).toBe("/users/1");
       expect(name).toBe("Ken the Ninja");
@@ -35,14 +35,14 @@ describe("User edit page", () => {
     test("display image file input [jdrvS18jqzJJ5RcsFHKMQ]", async () => {
       const imageInputType = await page.$eval(
         "[data-test=input-image]",
-        el => (el as HTMLInputElement).type
+        el => (el as HTMLInputElement).type,
       );
       expect(imageInputType).toBe("file");
     });
     test("display no authorization error [opLjiQLEUJHJs471IpZjw]", async () => {
       await page.goto(`${TARGET_PAGE_URL}/users/2/edit`);
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
       expect(message).toBe("Unauthorized access");
@@ -63,7 +63,7 @@ describe("User edit page", () => {
     });
     test("display sign in required error [fQRz9xthPhsNUMqm24Wcs]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");

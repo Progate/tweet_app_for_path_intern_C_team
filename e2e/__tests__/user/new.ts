@@ -4,30 +4,30 @@ describe("User new page", () => {
   });
   test("render form heading [FR_egKXSRGHlxE-VFYqKf]", async () => {
     const heading = await page.$eval("[data-test=form-heading]", el =>
-      (el as HTMLFormElement).innerText.trim()
+      (el as HTMLFormElement).innerText.trim(),
     );
     expect(heading).toBe("Sign up");
   });
   test("set form elements [S0sS5UVuqzdb0QsROcViQ]", async () => {
     const action = await page.$eval(
       "[data-test=form]",
-      el => (el as HTMLFormElement).action
+      el => (el as HTMLFormElement).action,
     );
     const name = await page.$eval(
       "[data-test=input-name]",
-      el => (el as HTMLInputElement).name
+      el => (el as HTMLInputElement).name,
     );
     const email = await page.$eval(
       "[data-test=input-email]",
-      el => (el as HTMLInputElement).name
+      el => (el as HTMLInputElement).name,
     );
     const password = await page.$eval(
       "[data-test=input-password]",
-      el => (el as HTMLInputElement).name
+      el => (el as HTMLInputElement).name,
     );
     const value = await page.$eval(
       "[data-test=submit]",
-      el => (el as HTMLInputElement).value
+      el => (el as HTMLInputElement).value,
     );
     expect(new URL(action).pathname).toBe("/users");
     expect(name).toBe("name");
@@ -48,7 +48,7 @@ describe("User new page", () => {
     });
     test("display posts index page and already signed in message [2ba4jmMeeDyfd3mvO5UnO]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(message).toBe("You are already logged in");
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);

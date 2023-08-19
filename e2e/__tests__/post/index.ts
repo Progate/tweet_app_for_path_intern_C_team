@@ -16,20 +16,20 @@ describe("Post index page", () => {
         el => {
           return (
             el.lastElementChild?.querySelector(
-              "[data-test=post-item-content]"
+              "[data-test=post-item-content]",
             ) as HTMLElement
           ).innerText.trim();
-        }
+        },
       );
       const secondOldestContent = await page.$eval(
         "[data-test=posts-container]",
         el => {
           return (
             el.lastElementChild?.previousElementSibling?.querySelector(
-              "[data-test=post-item-content]"
+              "[data-test=post-item-content]",
             ) as HTMLElement
           ).innerText.trim();
-        }
+        },
       );
 
       expect(oldestContent).toBe("Looking for a good book to read.");
@@ -48,7 +48,7 @@ describe("Post index page", () => {
     });
     test("display sign in required error [P7BxdnkCZFHfjzswGUYLr]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");

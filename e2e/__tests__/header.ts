@@ -4,16 +4,16 @@ describe("before sign in header", () => {
   });
   test("display header menu [NksqkQrHAzxeJt32ngFyW]", async () => {
     const logo = await page.$eval("[data-test=header-logo]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const about = await page.$eval("[data-test=header-link-about]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const signup = await page.$eval("[data-test=header-link-signup]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const login = await page.$eval("[data-test=header-link-login]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     expect(logo).toBe("TweetApp");
     expect(about).toBe("About");
@@ -34,29 +34,29 @@ describe("after sign in header", () => {
   });
   test("display header menu [guVRfeCs8-A3GsfXYRC7p]", async () => {
     const logo = await page.$eval("[data-test=header-logo]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const href = await page.$eval(
       "[data-test=header-logo]",
-      el => (el as HTMLAnchorElement).href
+      el => (el as HTMLAnchorElement).href,
     );
     const myPage = await page.$eval("[data-test=header-link-mypage]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const postIndex = await page.$eval(
       "[data-test=header-link-posts-index]",
-      el => (el as HTMLElement).innerText.trim()
+      el => (el as HTMLElement).innerText.trim(),
     );
     const postNew = await page.$eval("[data-test=header-link-posts-new]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const userIndex = await page.$eval(
       "[data-test=header-link-users-index]",
-      el => (el as HTMLElement).innerText.trim()
+      el => (el as HTMLElement).innerText.trim(),
     );
     const logout = await page.$eval(
       "[data-test=header-link-logout]",
-      el => (el as HTMLInputElement).value
+      el => (el as HTMLInputElement).value,
     );
     expect(logo).toBe("TweetApp");
     expect(href).toBe(`${TARGET_PAGE_URL}/posts`);

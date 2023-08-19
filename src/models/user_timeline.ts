@@ -40,7 +40,7 @@ export const getAllPostTimeline = async (): Promise<Timeline[]> => {
           user: retweet.user,
           activedAt: retweet.retweetedAt,
         };
-      })
+      }),
     );
 
   timeline.sort((a, b) => {
@@ -50,7 +50,7 @@ export const getAllPostTimeline = async (): Promise<Timeline[]> => {
 };
 
 export const getUserPostTimeline = async (
-  userId: number
+  userId: number,
 ): Promise<UserTimeline | null> => {
   const user = await getUserWithPostsIncludeRetweet(userId);
   if (user === null) return null;
@@ -71,7 +71,7 @@ export const getUserPostTimeline = async (
           user: retweet.user,
           activedAt: retweet.retweetedAt,
         };
-      })
+      }),
     );
 
   timeline.sort((a, b) => {
@@ -84,7 +84,7 @@ export const getUserPostTimeline = async (
 };
 
 export const getUserLikesTimeline = async (
-  userId: number
+  userId: number,
 ): Promise<UserTimeline | null> => {
   const user = await getUserLikedPosts(userId);
   if (user === null) return null;

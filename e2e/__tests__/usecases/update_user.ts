@@ -17,11 +17,11 @@ describe("Update user", () => {
       await page.goto(`${TARGET_PAGE_URL}/users/2/edit`);
       await page.$eval(
         "[data-test=input-name]",
-        el => ((el as HTMLInputElement).value = "update")
+        el => ((el as HTMLInputElement).value = "update"),
       );
       await page.$eval(
         "[data-test=input-email]",
-        el => ((el as HTMLInputElement).value = "update@example.com")
+        el => ((el as HTMLInputElement).value = "update@example.com"),
       );
     });
     test("display updated user show page and dialog message [kwSS1orxFfQCzf3If3uhZ]", async () => {
@@ -31,13 +31,13 @@ describe("Update user", () => {
       ]);
 
       const name = await page.$eval("[data-test=user-name]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const email = await page.$eval("[data-test=user-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(name).toBe("update");
       expect(email).toBe("update@example.com");
@@ -53,14 +53,14 @@ describe("Update user", () => {
 
       const href = await page.$eval(
         "[data-test=user-image]",
-        el => (el as HTMLImageElement).src
+        el => (el as HTMLImageElement).src,
       );
       expect(href).toBe(`${TARGET_PAGE_URL}/image/users/2.jpg`);
     });
     test("changes user image when image file is selected [qF2FAE3HCIulZYARTtMkb]", async () => {
       const userImagePath = "e2e/__tests__/mock/img/test_image.jpg";
       const imageInput = (await page.$(
-        "[data-test=input-image]"
+        "[data-test=input-image]",
       )) as ElementHandle<HTMLInputElement>;
       await imageInput?.uploadFile(userImagePath);
 
@@ -71,7 +71,7 @@ describe("Update user", () => {
 
       const href = await page.$eval(
         "[data-test=user-image]",
-        el => (el as HTMLImageElement).src
+        el => (el as HTMLImageElement).src,
       );
       expect(href).not.toBe(`${TARGET_PAGE_URL}/image/users/2.jpg`);
       expect(href.startsWith(`${TARGET_PAGE_URL}/image/users/`)).toBeTruthy();
@@ -80,7 +80,7 @@ describe("Update user", () => {
       const fileName = url.pathname.replace("/image/users/", "");
       const filePath = `public/image/users/${fileName}`;
       expect(
-        fs.readFileSync(userImagePath).equals(fs.readFileSync(filePath))
+        fs.readFileSync(userImagePath).equals(fs.readFileSync(filePath)),
       ).toBeTruthy();
       fs.unlinkSync(filePath);
     });
@@ -90,21 +90,21 @@ describe("Update user", () => {
       await page.goto(`${TARGET_PAGE_URL}/users/2/edit`);
       await page.$eval(
         "[data-test=input-name]",
-        el => ((el as HTMLInputElement).value = "")
+        el => ((el as HTMLInputElement).value = ""),
       );
       await page.$eval(
         "[data-test=input-email]",
-        el => ((el as HTMLInputElement).value = "")
+        el => ((el as HTMLInputElement).value = ""),
       );
       await Promise.all([
         page.waitForSelector("[data-test=error-name]"),
         page.click("[data-test=submit]"),
       ]);
       const nameError = await page.$eval("[data-test=error-name]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const emailError = await page.$eval("[data-test=error-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(nameError).toBe("Name can't be blank");
       expect(emailError).toBe("Email can't be blank");

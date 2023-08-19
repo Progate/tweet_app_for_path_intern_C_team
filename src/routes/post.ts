@@ -17,12 +17,11 @@ postRouter.get("/", ensureAuthUser, async (req, res) => {
 });
 
 postRouter.get("/following", ensureAuthUser, async (req, res) => {
-	const timeline = await getAllPostTimeline();
-	res.render("posts/following", {
-	  timeline,
-	});
+  const timeline = await getAllPostTimeline();
+  res.render("posts/following", {
+    timeline,
   });
-
+});
 
 postRouter.get("/new", ensureAuthUser, (req, res) => {
   res.render("posts/new", {
@@ -84,7 +83,7 @@ postRouter.post(
     await createPost({content, userId: currentUserId});
     req.dialogMessage?.setMessage("Post successfully created");
     res.redirect("/posts");
-  }
+  },
 );
 
 postRouter.get(
@@ -98,7 +97,7 @@ postRouter.get(
       post,
       errors: [],
     });
-  }
+  },
 );
 
 postRouter.patch(
@@ -121,7 +120,7 @@ postRouter.patch(
     await updatePost(Number(postId), content);
     req.dialogMessage?.setMessage("Post successfully edited");
     res.redirect("/posts");
-  }
+  },
 );
 
 postRouter.delete(
@@ -133,5 +132,5 @@ postRouter.delete(
     await deletePost(Number(postId));
     req.dialogMessage?.setMessage("Post successfully deleted");
     res.redirect("/posts");
-  }
+  },
 );

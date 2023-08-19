@@ -12,13 +12,13 @@ describe("Signup", () => {
     });
     test("display created user show page and dialog message [9IZKM2fsK49afkor00ib_]", async () => {
       const name = await page.$eval("[data-test=user-name]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const email = await page.$eval("[data-test=user-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(message).toBe("You have signed up successfully");
       expect(name).toBe("Ken the Ninja");
@@ -39,7 +39,7 @@ describe("Signup", () => {
         page.click("[data-test=submit]"),
       ]);
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
       expect(message).toBe("You have logged in successfully");
@@ -64,13 +64,13 @@ describe("Signup", () => {
         page.click("[data-test=submit]"),
       ]);
       const nameError = await page.$eval("[data-test=error-name]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const emailError = await page.$eval("[data-test=error-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       const passwordError = await page.$eval("[data-test=error-password", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(nameError).toBe("Name can't be blank");
       expect(emailError).toBe("Email can't be blank");
@@ -85,7 +85,7 @@ describe("Signup", () => {
         page.click("[data-test=submit]"),
       ]);
       const emailError = await page.$eval("[data-test=error-email]", el =>
-        (el as HTMLElement).innerText.trim()
+        (el as HTMLElement).innerText.trim(),
       );
       expect(emailError).toBe("Email has already been taken");
     });

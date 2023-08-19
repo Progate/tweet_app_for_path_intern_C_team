@@ -18,7 +18,7 @@ describe("Retweet post", () => {
       page.click("[data-test=submit-retweet]"),
     ]);
     const count = await page.$eval("[data-test=retweet-count]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     expect(count).toBe("1");
   });
@@ -32,7 +32,7 @@ describe("Retweet post", () => {
       page.click("[data-test=submit-retweet]"),
     ]);
     let count = await page.$eval("[data-test=retweet-count]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     expect(count).toBe("1");
     await Promise.all([
@@ -40,7 +40,7 @@ describe("Retweet post", () => {
       page.click("[data-test=submit-retweet]"),
     ]);
     count = await page.$eval("[data-test=retweet-count]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     expect(count).toBe("0");
   });
@@ -62,20 +62,20 @@ describe("Retweet post", () => {
       el => {
         return (
           el.firstElementChild?.querySelector(
-            "[data-test=post-item-content]"
+            "[data-test=post-item-content]",
           ) as HTMLElement
         ).innerText.trim();
-      }
+      },
     );
     const postLabel = await page.$eval("[data-test=posts-container]", el => {
       return (
         el.firstElementChild?.querySelector(
-          "[data-test=post-label]"
+          "[data-test=post-label]",
         ) as HTMLElement
       ).innerText.trim();
     });
     expect(newestContent).toBe(
-      "Master Wooly taught me how to use Git! Now I can teach my little brother Ben."
+      "Master Wooly taught me how to use Git! Now I can teach my little brother Ben.",
     );
     expect(postLabel).toBe("Ken the Ninja Retweeted");
     await Promise.all([
@@ -105,20 +105,20 @@ describe("Retweet post", () => {
       el => {
         return (
           el.firstElementChild?.querySelector(
-            "[data-test=post-item-content]"
+            "[data-test=post-item-content]",
           ) as HTMLElement
         ).innerText.trim();
-      }
+      },
     );
     const postLabel = await page.$eval("[data-test=posts-container]", el => {
       return (
         el.firstElementChild?.querySelector(
-          "[data-test=post-label]"
+          "[data-test=post-label]",
         ) as HTMLElement
       ).innerText.trim();
     });
     expect(newestContent).toBe(
-      "Master Wooly taught me how to use Git! Now I can teach my little brother Ben."
+      "Master Wooly taught me how to use Git! Now I can teach my little brother Ben.",
     );
     expect(postLabel).toBe("Ken the Ninja Retweeted");
     await Promise.all([

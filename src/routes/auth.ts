@@ -52,7 +52,7 @@ authRouter.post(
     req.authentication?.login(user);
     req.dialogMessage?.setMessage("You have logged in successfully");
     res.redirect("/posts");
-  }
+  },
 );
 
 /** An endpoint to log out */

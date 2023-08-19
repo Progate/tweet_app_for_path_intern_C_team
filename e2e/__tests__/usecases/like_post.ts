@@ -19,13 +19,13 @@ describe("Like post", () => {
     ]);
     const action = await page.$eval(
       "[data-test=form-like]",
-      el => (el as HTMLFormElement).action
+      el => (el as HTMLFormElement).action,
     );
     const icon = await page.$eval("[data-test=favorite-icon]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     const count = await page.$eval("[data-test=like-count]", el =>
-      (el as HTMLElement).innerText.trim()
+      (el as HTMLElement).innerText.trim(),
     );
     expect(new URL(action).pathname).toBe("/posts/3/likes");
     expect(icon).toBe("favorite");

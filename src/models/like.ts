@@ -38,7 +38,7 @@ export const deleteLike = async (likeData: LikeData): Promise<Like> => {
 
 export const hasUserLikedPost = async (
   userId: number,
-  postId: number
+  postId: number,
 ): Promise<boolean> => {
   const prisma = databaseManager.getInstance();
   const like = await prisma.like.findFirst({

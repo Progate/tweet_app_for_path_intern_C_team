@@ -68,7 +68,7 @@ const loadSession = (app: Express): void => {
       // and it can lead data breach.
       signed: true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week in milliseconds
-    })
+    }),
   );
 };
 
@@ -108,7 +108,7 @@ const loadSecureHeaders = (app: Express): void => {
         directives: {
           upgradeInsecureRequests: null,
         },
-      })
+      }),
     );
   }
 };
