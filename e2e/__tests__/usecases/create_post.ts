@@ -15,7 +15,7 @@ describe("Post create", () => {
     test("display post index page and dialog message [um_uej6dYy4jNAOecEUoc]", async () => {
       await page.$eval(
         "[data-test=textarea-content]",
-        el => ((el as HTMLTextAreaElement).value = "test content"),
+        el => ((el as HTMLTextAreaElement).value = "test content")
       );
       await Promise.all([
         page.waitForNavigation(),
@@ -24,12 +24,12 @@ describe("Post create", () => {
       const content = await page.$eval("[data-test=posts-container]", el => {
         return (
           el.firstElementChild?.querySelector(
-            "[data-test=post-item-content]",
+            "[data-test=post-item-content]"
           ) as HTMLElement
         ).innerText.trim();
       });
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
       expect(message).toBe("Post successfully created");
@@ -43,7 +43,7 @@ describe("Post create", () => {
         page.click("[data-test=submit]"),
       ]);
       const content = await page.$eval("[data-test=error-content]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(content).toBe("Content can't be blank");
     });

@@ -26,7 +26,7 @@ export const createUser = async (userData: UserData): Promise<User> => {
 
 export const updateUserProfile = async (
   userId: number,
-  userProfileData: UserProfileData,
+  userProfileData: UserProfileData
 ): Promise<User> => {
   const prisma = databaseManager.getInstance();
   const user = await prisma.user.update({
@@ -39,7 +39,7 @@ export const updateUserProfile = async (
 };
 
 export const getUserWithPostsIncludeRetweet = async (
-  userId: number,
+  userId: number
 ): Promise<
   | (UserWithoutPassword & {
       posts: PostWithUser[];
@@ -106,7 +106,7 @@ export const getUserWithPostsIncludeRetweet = async (
 };
 
 export const getUserLikedPosts = async (
-  userId: number,
+  userId: number
 ): Promise<
   | (UserWithoutPassword & {
       likes: Array<{
@@ -164,7 +164,7 @@ export const getAllUsers = async (): Promise<UserWithoutPassword[]> => {
 };
 
 export const getUser = async (
-  userId: number,
+  userId: number
 ): Promise<UserWithoutPassword | null> => {
   const prisma = databaseManager.getInstance();
   const user = await prisma.user.findUnique({
@@ -179,7 +179,7 @@ export const getUser = async (
 };
 
 export const getUserByEmail = async (
-  email: string,
+  email: string
 ): Promise<UserWithoutPassword | null> => {
   const prisma = databaseManager.getInstance();
   const user = await prisma.user.findUnique({
@@ -194,7 +194,7 @@ export const getUserByEmail = async (
 };
 
 export const getUserByEmailWithPassword = async (
-  email: string,
+  email: string
 ): Promise<User | null> => {
   const prisma = databaseManager.getInstance();
   const user = await prisma.user.findUnique({

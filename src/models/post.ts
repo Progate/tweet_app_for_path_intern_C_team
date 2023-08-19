@@ -18,7 +18,7 @@ export const createPost = async (postData: PostData): Promise<Post> => {
 
 export const updatePost = async (
   postId: number,
-  content: string,
+  content: string
 ): Promise<Post> => {
   const prisma = databaseManager.getInstance();
   const post = await prisma.post.update({

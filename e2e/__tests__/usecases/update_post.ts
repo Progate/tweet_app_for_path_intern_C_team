@@ -15,7 +15,7 @@ describe("Post update", () => {
     test("display post index page and dialog message [JY9O5qhu2x7FlZ116hRrZ]", async () => {
       await page.$eval(
         "[data-test=textarea-content]",
-        el => ((el as HTMLTextAreaElement).value = "update content"),
+        el => ((el as HTMLTextAreaElement).value = "update content")
       );
       await Promise.all([
         page.waitForNavigation(),
@@ -23,10 +23,10 @@ describe("Post update", () => {
       ]);
       const content = await page.$eval(
         "[data-test=post-7] [data-test=post-item-content]",
-        el => (el as HTMLElement).innerText.trim(),
+        el => (el as HTMLElement).innerText.trim()
       );
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(message).toBe("Post successfully edited");
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
@@ -39,14 +39,14 @@ describe("Post update", () => {
     test("display empty error message [XYDQwwwtuOhKIlZ0Po_bT]", async () => {
       await page.$eval(
         "[data-test=textarea-content]",
-        el => ((el as HTMLTextAreaElement).value = ""),
+        el => ((el as HTMLTextAreaElement).value = "")
       );
       await Promise.all([
         page.waitForSelector("[data-test=error-content]"),
         page.click("[data-test=submit]"),
       ]);
       const message = await page.$eval("[data-test=error-content]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(message).toBe("Content can't be blank");
     });

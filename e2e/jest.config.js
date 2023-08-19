@@ -14,5 +14,5 @@ module.exports = {
 };
 
 process.env.JEST_PUPPETEER_CONFIG = require.resolve(
-  "./jest-puppeteer.config.js",
+  "./jest-puppeteer.config.js"
 );

@@ -17,7 +17,7 @@ retweetRouter.post(
     }
     await createRetweet({userId: currentUserId, postId: Number(postId)});
     res.redirect(`/posts/${postId}`);
-  },
+  }
 );
 
 retweetRouter.delete(
@@ -33,5 +33,5 @@ retweetRouter.delete(
     }
     await deleteRetweet({userId: currentUserId, postId: Number(postId)});
     res.redirect(`/posts/${postId}`);
-  },
+  }
 );

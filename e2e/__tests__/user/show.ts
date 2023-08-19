@@ -12,10 +12,10 @@ describe("User show page", () => {
     });
     test("display user info [izadjY1N8lWT_c7ynF_tY]", async () => {
       const name = await page.$eval("[data-test=user-name]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       const email = await page.$eval("[data-test=user-email]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(name).toBe("for user show");
       expect(email).toBe("6@progate.com");
@@ -26,20 +26,20 @@ describe("User show page", () => {
         el => {
           return (
             el.lastElementChild?.querySelector(
-              "[data-test=post-item-content]",
+              "[data-test=post-item-content]"
             ) as HTMLElement
           ).innerText.trim();
-        },
+        }
       );
       const secondOldestContent = await page.$eval(
         "[data-test=posts-container]",
         el => {
           return (
             el.lastElementChild?.previousElementSibling?.querySelector(
-              "[data-test=post-item-content]",
+              "[data-test=post-item-content]"
             ) as HTMLElement
           ).innerText.trim();
-        },
+        }
       );
 
       expect(oldestContent).toBe("user show oldest post");
@@ -58,7 +58,7 @@ describe("User show page", () => {
     });
     test("display sign in required error [zgd74V0MRfSjR8PrNINrH]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");

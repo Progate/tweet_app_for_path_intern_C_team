@@ -83,7 +83,7 @@ postRouter.post(
     await createPost({content, userId: currentUserId});
     req.dialogMessage?.setMessage("Post successfully created");
     res.redirect("/posts");
-  },
+  }
 );
 
 postRouter.get(
@@ -97,7 +97,7 @@ postRouter.get(
       post,
       errors: [],
     });
-  },
+  }
 );
 
 postRouter.patch(
@@ -120,7 +120,7 @@ postRouter.patch(
     await updatePost(Number(postId), content);
     req.dialogMessage?.setMessage("Post successfully edited");
     res.redirect("/posts");
-  },
+  }
 );
 
 postRouter.delete(
@@ -132,5 +132,5 @@ postRouter.delete(
     await deletePost(Number(postId));
     req.dialogMessage?.setMessage("Post successfully deleted");
     res.redirect("/posts");
-  },
+  }
 );

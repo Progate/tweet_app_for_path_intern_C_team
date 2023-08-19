@@ -13,11 +13,11 @@ describe("User index page", () => {
     test("display user list [JDwQzgXC5CV2-6lfzRAEW]", async () => {
       const userImageCount = await page.$$eval(
         "[data-test=user-item-image]",
-        els => els.length,
+        els => els.length
       );
       const userLinkCount = await page.$$eval(
         "[data-test=user-item-link]",
-        els => els.length,
+        els => els.length
       );
       expect(userImageCount).toEqual(userLinkCount);
     });
@@ -34,7 +34,7 @@ describe("User index page", () => {
     });
     test("display sign in required error [dlTjyJ4m5iIgZBBhAur_V]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");

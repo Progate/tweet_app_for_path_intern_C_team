@@ -15,7 +15,7 @@ describe("Post delete", () => {
       page.click("[data-test=submit-post-delete]"),
     ]);
     const message = await page.$eval("[data-test=dialog]", el =>
-      (el as HTMLElement).innerText.trim(),
+      (el as HTMLElement).innerText.trim()
     );
     expect(message).toBe("Post successfully deleted");
     expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);

@@ -49,10 +49,10 @@ export class Authentication {
 export const authenticationMiddleware: RequestHandler = async (
   req,
   res,
-  next,
+  next
 ) => {
   req.authentication = new Authentication(
-    req.session as AuthenticationSessionOrNullish,
+    req.session as AuthenticationSessionOrNullish
   );
   await req.authentication.ensureUserExist();
   next();

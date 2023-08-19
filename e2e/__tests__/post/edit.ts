@@ -13,15 +13,15 @@ describe("Post edit page", () => {
     test("set form elements [QxVsMj44Kp55FxSxcIrfl]", async () => {
       const action = await page.$eval(
         "[data-test=form]",
-        el => (el as HTMLFormElement).action,
+        el => (el as HTMLFormElement).action
       );
       const content = await page.$eval(
         "[data-test=textarea-content]",
-        el => (el as HTMLInputElement).value,
+        el => (el as HTMLInputElement).value
       );
       const value = await page.$eval(
         "[data-test=submit]",
-        el => (el as HTMLInputElement).value,
+        el => (el as HTMLInputElement).value
       );
       expect(new URL(action).pathname).toBe("/posts/1");
       expect(content).toBe("Looking for a good book to read.");
@@ -30,7 +30,7 @@ describe("Post edit page", () => {
     test("display no authorization error [u_wyAolNGjYTZu88IGFbL]", async () => {
       await page.goto(`${TARGET_PAGE_URL}/posts/2/edit`);
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/posts`);
       expect(message).toBe("Unauthorized access");
@@ -50,7 +50,7 @@ describe("Post edit page", () => {
     });
     test("display sign in required error [w65LXlQ0bzwrMMJ4t888d]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");

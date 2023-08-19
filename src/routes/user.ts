@@ -57,7 +57,7 @@ userRouter.post(
     req.authentication?.login(user);
     req.dialogMessage?.setMessage("You have signed up successfully");
     res.redirect(`/users/${user.id}`);
-  },
+  }
 );
 
 /** A page to show user details */
@@ -98,7 +98,7 @@ userRouter.get(
       user,
       errors: [],
     });
-  },
+  }
 );
 
 const storage = multer.diskStorage({
@@ -112,12 +112,12 @@ const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
     const ACCEPTABLE_SUBTYPES = ["png", "jpeg"] as const;
-    type AcceptableSubtype = (typeof ACCEPTABLE_SUBTYPES)[number];
+    type AcceptableSubtype = typeof ACCEPTABLE_SUBTYPES[number];
     const toAcceptableImageMediaType = (
-      fullMimeType: string,
+      fullMimeType: string
     ): ["image", AcceptableSubtype] | null => {
       const isAcceptableSubtype = (
-        subtype: string,
+        subtype: string
       ): subtype is AcceptableSubtype => {
         return (ACCEPTABLE_SUBTYPES as readonly string[]).includes(subtype);
       };
@@ -130,7 +130,7 @@ const upload = multer({
     const mediaType = toAcceptableImageMediaType(file.mimetype);
     if (mediaType === null)
       return cb(
-        new Error("Only image files in png or jpeg format can be uploaded"),
+        new Error("Only image files in png or jpeg format can be uploaded")
       );
     cb(null, true);
   },
@@ -184,5 +184,5 @@ userRouter.patch(
     });
     req.dialogMessage?.setMessage("Your account has been updated successfully");
     res.redirect(`/users/${userId}`);
-  },
+  }
 );

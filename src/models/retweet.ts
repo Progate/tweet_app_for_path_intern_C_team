@@ -38,7 +38,7 @@ export const getAllRetweetedPosts = async (): Promise<
 };
 
 export const getPostRetweetedCount = async (
-  postId: number,
+  postId: number
 ): Promise<number> => {
   const prisma = databaseManager.getInstance();
   const count = await prisma.retweet.count({
@@ -50,7 +50,7 @@ export const getPostRetweetedCount = async (
 };
 
 export const createRetweet = async (
-  retweetData: RetweetData,
+  retweetData: RetweetData
 ): Promise<Retweet> => {
   const prisma = databaseManager.getInstance();
   const retweet = await prisma.retweet.create({
@@ -60,7 +60,7 @@ export const createRetweet = async (
 };
 
 export const deleteRetweet = async (
-  retweetData: RetweetData,
+  retweetData: RetweetData
 ): Promise<Retweet> => {
   const prisma = databaseManager.getInstance();
   const retweet = await prisma.retweet.delete({
@@ -78,7 +78,7 @@ export const deleteRetweet = async (
 
 export const hasUserRetweetedPost = async (
   userId: number,
-  postId: number,
+  postId: number
 ): Promise<boolean> => {
   const prisma = databaseManager.getInstance();
   const retweet = await prisma.retweet.findFirst({

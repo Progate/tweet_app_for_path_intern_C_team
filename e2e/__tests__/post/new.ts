@@ -13,15 +13,15 @@ describe("Post new page", () => {
     test("set form elements [nbnNJ3T3ptEGR_fQItZpm]", async () => {
       const action = await page.$eval(
         "[data-test=form]",
-        el => (el as HTMLFormElement).action,
+        el => (el as HTMLFormElement).action
       );
       const content = await page.$eval(
         "[data-test=textarea-content]",
-        el => (el as HTMLInputElement).type,
+        el => (el as HTMLInputElement).type
       );
       const value = await page.$eval(
         "[data-test=submit]",
-        el => (el as HTMLInputElement).value,
+        el => (el as HTMLInputElement).value
       );
       expect(new URL(action).pathname).toBe("/posts");
       expect(content).toBe("textarea");
@@ -41,7 +41,7 @@ describe("Post new page", () => {
     });
     test("display sign in required error [f-m_Tsxw_JZMgr7axbxLc]", async () => {
       const message = await page.$eval("[data-test=dialog]", el =>
-        (el as HTMLElement).innerText.trim(),
+        (el as HTMLElement).innerText.trim()
       );
       expect(page.url()).toBe(`${TARGET_PAGE_URL}/login`);
       expect(message).toBe("You must be logged in");
