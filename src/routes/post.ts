@@ -16,6 +16,13 @@ postRouter.get("/", ensureAuthUser, async (req, res) => {
   });
 });
 
+postRouter.get("/following", ensureAuthUser, async (req, res) => {
+  const timeline = await getAllPostTimeline();
+  res.render("posts/following", {
+    timeline,
+  });
+});
+
 postRouter.get("/new", ensureAuthUser, (req, res) => {
   res.render("posts/new", {
     post: {

@@ -1,5 +1,6 @@
 <div class="main posts-index">
-  <div class="container">
-    <%- include('../_timeline', {timeline: timeline}); %>
-  </div>
+	<div class="container">
+	  <a href="<%= `/posts/following` %>">Back to Following Posts</a>
+	  <%- include('../_timeline', {timeline: timeline}); %>
+	</div>
 </div>
