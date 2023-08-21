@@ -600,7 +600,7 @@ input[type="checkbox"] {
 }
 
 /* Dialog ================================ */
-.Dialog {
+.Modal {
   z-index: -1;
   top: 0;
   right: 0;
@@ -611,13 +611,13 @@ input[type="checkbox"] {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.Dialog:target {
+.Modal:target {
   opacity:1;
   z-index: 10;
   pointer-events: auto;
 }
 
-.Dialog > div {
+.Modal > div {
   text-align: center;
   margin: 150px auto;
   height: 450px;
