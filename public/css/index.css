@@ -87,6 +87,7 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .button {
@@ -111,22 +112,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .following-button{
+  color: #3ECDC6;
   border: 1px solid #3ECDC6;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
   width: 121px;
   height: 34px;
   top: 20px;
   left: 30px;
   padding: 8px 32x 8px 32px;
   border-radius: 2px;
-  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
+/* フォロー中を見れる時に使う */
+/* 
 .unfollow-button{
   border: 1px solid var(--red, #E75252);
   background: rgba(231, 82, 82, 0.10);
@@ -140,6 +152,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .cancel-button{
@@ -154,7 +167,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  cursor: pointer;
+} */
 
 /* header ================================ */
 header {

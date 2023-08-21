@@ -19,10 +19,13 @@
         <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
       <% } else { %>
         <div class="button">
-          <div class="follow-button">
-          Follow
-          </div>
-      </div>
+          <%let isFollowing = true; %>
+          <% if(isFollowing === false) { %>
+            <div class="follow-button">Follow</div>
+          <% } else { %>
+            <div class="following-button">Following</div>
+          <% }  %>
+        </div>
       <% } %> 
 
     </div>
