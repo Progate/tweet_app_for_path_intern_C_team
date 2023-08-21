@@ -125,3 +125,9 @@ dist
 
 # db
 *.db
+
+#vscode
+.vscode/
+
+#idea
+.idea/

@@ -7,6 +7,15 @@
       <% if(currentUser.id === user.id) { %>
         <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
       <% } %>
+      <a href="#openfollow">Open Modal</a>
+
+      <div id="openfollow" class="Modal">
+        <div>
+          <h2>フォロー</h2>
+          <p>テスト表示です</p><br />
+          <a href="#close">表示を閉じる</a>
+        </div>
+      </div>
     </div>
     <ul class="user-tabs">
       <li class="active">
