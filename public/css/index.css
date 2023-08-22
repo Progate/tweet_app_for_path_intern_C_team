@@ -80,6 +80,82 @@ body {
   clear: both;
 }
 
+.follow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.follow-button{
+  color: white;
+  background: #3ECDC6;
+  width: 121px;
+  height: 34px;
+  top: 20px;
+  left: 30px;
+  padding: 8px 32x 8px 32px;
+  border-radius: 2px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.following-button{
+  border: 1px solid #3ECDC6;
+  width: 121px;
+  height: 34px;
+  top: 20px;
+  left: 30px;
+  padding: 8px 32x 8px 32px;
+  border-radius: 2px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unfollow-button{
+  border: 1px solid var(--red, #E75252);
+  background: rgba(231, 82, 82, 0.10);
+  width: 121px;
+  height: 34px;
+  top: 20px;
+  left: 30px;
+  padding: 8px 32x 8px 32px;
+  border-radius: 2px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-button{
+  border: 1px solid var(--black, #0B0F15);
+  width: 121px;
+  height: 34px;
+  top: 20px;
+  left: 30px;
+  padding: 8px 32x 8px 32px;
+  border-radius: 2px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* header ================================ */
 header {
   height: 64px;
@@ -187,6 +263,17 @@ header {
 .about-img {
   width: 84%;
 }
+
+.about-main p1 { /* Followers, Followings */
+  color: var(--color-opacity-87-black, #212121);
+  font-family: Avenir Next;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 1px;
+  }
+  
 
 /* form ================================ */
 .form {
