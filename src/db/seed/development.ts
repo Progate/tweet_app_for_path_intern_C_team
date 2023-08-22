@@ -1,4 +1,4 @@
-import {insertUsers, insertPosts, insertLikes,insertFollow} from "./index";
+import {insertUsers, insertPosts, insertLikes, insertFollow} from "./index";
 
 const main = async (): Promise<void> => {
   await insertUsers([
