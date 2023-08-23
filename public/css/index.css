@@ -474,6 +474,29 @@ img[data-test=post-image] {
   font-size: 14px;
 }
 
+.follow-btn{
+  display: inline-flex;
+  padding: 8px 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.follow-btn.follow{
+  border-radius: 2px;
+  background: #3ECDC6;
+}
+
+.follow-btn.following{
+  border-radius: 2px;
+  border: 1px solid #3ECDC6;
+}
+
+.follow-btn.unfollow{
+  border-radius: 2px;
+  border: 1px solid var(--red, #E75252);
+  background: rgba(231, 82, 82, 0.10);
+}
+
 /* posts/new ================================ */
 .posts-new textarea {
   font-size: 20px;
