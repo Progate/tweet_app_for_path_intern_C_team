@@ -5,9 +5,11 @@
         <img class="posts-show-item-image" src="<%= post.user.imageName %>" data-test="user-image">
         <a href="/users/<%= post.user.id %>" data-test="user-name"><%= post.user.name %></a>
         <% if(post.user.id !== currentUser.id) { %>
-          <button class="follow-btn follow">
-            Follow
-          </button>
+          <form action="/posts/<%= post.user.id %>/follows" method="POST" data-test="form-follow">
+            <button class="follow-btn follow">  <% // CSSを設定する必要あり %>
+              Follow
+            </button>
+          </form>
         <% } %>
       </div>
       <p data-test="post-content">
