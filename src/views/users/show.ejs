@@ -6,11 +6,11 @@
       <p data-test="user-email"><%= user.email %></p>
 
       <div class="follow">
-        <p1 data-test="user-name">4 Followers</p1>
+        <p1 data-test="user-followerd"><%= FollowerCount %> Followers</p1>
         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
           <path d="M1 0V24" stroke="#9E9E9E" stroke-width="0.5"/>
         </svg>
-        <p1 data-test="user-name">3 Following</p1>
+        <p1 data-test="user-following"><%= FollowCount %> Following</p1>
       </div>
 
       <% if(currentUser.id === user.id) { %>
