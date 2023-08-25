@@ -205,9 +205,7 @@ export const getUserByEmailWithPassword = async (
   return user;
 };
 
-export const getFollowCount = async (
-  userId: number,
-): Promise<number> => {
+export const getFollowCount = async (userId: number): Promise<number> => {
   const prisma = databaseManager.getInstance();
   const count = await prisma.follow.count({
     where: {
@@ -217,9 +215,7 @@ export const getFollowCount = async (
   return count;
 };
 
-export const getFollowerCount = async (
-  userId: number,
-): Promise<number> => {
+export const getFollowerCount = async (userId: number): Promise<number> => {
   const prisma = databaseManager.getInstance();
   const count = await prisma.follow.count({
     where: {
