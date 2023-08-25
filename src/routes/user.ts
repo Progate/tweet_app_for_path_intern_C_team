@@ -7,6 +7,8 @@ import {
   createUser,
   getUser,
   updateUserProfile,
+  getFollowCount,
+  getFollowerCount,
 } from "@/models/user";
 import {
   getUserPostTimeline,
@@ -64,11 +66,15 @@ userRouter.post(
 userRouter.get("/:userId", ensureAuthUser, async (req, res, next) => {
   const {userId} = req.params;
   const userTimeline = await getUserPostTimeline(Number(userId));
+  const FollowCount = await getFollowCount(Number(userId));
+  const FollowerCount = await getFollowerCount(Number(userId));
   if (!userTimeline)
     return next(new Error("Invalid error: The user is undefined."));
   const {user, timeline} = userTimeline;
   res.render("users/show", {
     user,
+    FollowerCount,
+    FollowCount,
     timeline,
   });
 });
