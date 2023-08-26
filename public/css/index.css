@@ -124,35 +124,29 @@ body {
   height: 34px;
   top: 20px;
   left: 30px;
-  padding: 8px 32x 8px 32px;
-  border-radius: 2px;
+  padding: 8px 32px;
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  float: right;
 }
 
 .following-button{
   color: #3ECDC6;
-  border: 1px solid #3ECDC6;
-  text-align: center;
-  font-family: Arial;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 2px;
+  background: 1px solid white;
   width: 121px;
   height: 34px;
   top: 20px;
   left: 30px;
-  padding: 8px 32x 8px 32px;
+  padding: 8px 32px;
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  float: right;
 }
 
 /* header ================================ */

@@ -13,7 +13,7 @@
         <p1 data-test="user-name">3 Following</p1>
       </div>
 
-      <% if(currentUser.id === user.id) { %>
+      <% if(currentUser.id === user.id) { %> <%# currentUserは取得できなかった %>
         <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
       <% } else { %>
         <div class="button">
