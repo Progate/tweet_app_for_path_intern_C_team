@@ -80,15 +80,6 @@ body {
   clear: both;
 }
 
-.button {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
 .follow {
   display: flex;
   align-items: center;
