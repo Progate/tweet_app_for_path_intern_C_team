@@ -124,35 +124,29 @@ body {
   height: 34px;
   top: 20px;
   left: 30px;
-  padding: 8px 32x 8px 32px;
-  border-radius: 2px;
+  padding: 8px 32px;
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  float: right;
 }
 
 .following-button{
   color: #3ECDC6;
-  border: 1px solid #3ECDC6;
-  text-align: center;
-  font-family: Arial;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 2px;
+  background: 1px solid white;
   width: 121px;
   height: 34px;
   top: 20px;
   left: 30px;
-  padding: 8px 32x 8px 32px;
+  padding: 8px 32px;
   border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  float: right;
 }
 
 /* header ================================ */
@@ -472,6 +466,29 @@ img[data-test=post-image] {
   color: #8899a6;
   text-decoration: underline;
   font-size: 14px;
+}
+
+.follow-btn{
+  display: inline-flex;
+  padding: 8px 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.follow-btn.follow{
+  border-radius: 2px;
+  background: #3ECDC6;
+}
+
+.follow-btn.following{
+  border-radius: 2px;
+  border: 1px solid #3ECDC6;
+}
+
+.follow-btn.unfollow{
+  border-radius: 2px;
+  border: 1px solid var(--red, #E75252);
+  background: rgba(231, 82, 82, 0.10);
 }
 
 /* posts/new ================================ */

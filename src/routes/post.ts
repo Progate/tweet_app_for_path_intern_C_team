@@ -7,6 +7,7 @@ import {getAllPostTimeline} from "@/models/user_timeline";
 import {getPostLikedCount, hasUserLikedPost} from "@/models/like";
 import {ensureAuthUser} from "@/middlewares/authentication";
 import {ensureOwnerOfPost} from "@/middlewares/current_user";
+import {hasUserFollowed} from "@/models/follow";
 export const postRouter = express.Router();
 
 postRouter.get("/", ensureAuthUser, async (req, res) => {
@@ -44,8 +45,10 @@ postRouter.get("/:postId", ensureAuthUser, async (req, res, next) => {
     // This must not happen.
     return next(new Error("Invalid error: currentUserId is undefined."));
   }
+
   const likeCount = await getPostLikedCount(post.id);
   const hasLiked = await hasUserLikedPost(currentUserId, post.id);
+  const isFollowing = await hasUserFollowed(currentUserId, post.userId);
   const retweetCount = await getPostRetweetedCount(post.id);
   const hasRetweeted = await hasUserRetweetedPost(currentUserId, post.id);
   res.render("posts/show", {
@@ -55,6 +58,8 @@ postRouter.get("/:postId", ensureAuthUser, async (req, res, next) => {
     hasLiked,
     retweetCount,
     hasRetweeted,
+    isFollowing,
+    currentUserId,
   });
 });
 
