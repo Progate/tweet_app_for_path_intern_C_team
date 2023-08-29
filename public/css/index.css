@@ -108,15 +108,6 @@ body {
   cursor: pointer;
 }
 
-.button {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
 .follow-button{
   color: white;
   background: #3ECDC6;
@@ -347,20 +338,35 @@ header {
 }
 
 /* posts/index ================================ */
-.test-header{
-  width: 100%;
+.post-header{
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.test-header-heading{
+/* .post-header-heading{
   float: left;
   width: 50%;
 }
 
-.test-header-link{
+.post-header-link{
   float: right;
-  color: #3ecdc6;
-  width: 50%;
+  width: 50%; 
+} */
+
+.post-header-link a{
+  font-weight: 600;
 } 
+
+.post-header-link a:hover{
+  color: #3ecdc6;
+}
+
+.arrow-forward{
+  margin-left: 5px;
+  vertical-align: middle;
+}
 
 /* posts/index timeline */
 .posts-index-item {
@@ -368,6 +374,7 @@ header {
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
+  clear: both;
 }
 
 .post-left img {
@@ -539,7 +546,7 @@ img[data-test=post-image] {
 }
 
 .comments-index-item {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
 }
 
