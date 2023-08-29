@@ -1,7 +1,13 @@
 <div class="main posts-index">
   <div class="container">
-	<p><a href="<%= `/posts` %>">Explore all posts</a></p>
-	<p>"currentUser.idがfollowしているユーザーの投稿のみを表示する"</p>
+    <div class="post-heading">
+      <h2>Following Posts</h2>
+      <p><a href="<%= `/posts` %>">
+        Explore all posts
+        <span class="material-icons">arrow_forward</span>
+      </a></p>
+      <p>"currentUser.idがfollowしているユーザーの投稿のみを表示する"</p>
+    </div>
     <%- include('../_timeline', {timeline: timeline}); %>
   </div>
 </div>

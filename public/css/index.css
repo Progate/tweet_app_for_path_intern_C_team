@@ -347,6 +347,22 @@ header {
 }
 
 /* posts/index ================================ */
+.test-header{
+  width: 100%;
+}
+
+.test-header-heading{
+  float: left;
+  width: 50%;
+}
+
+.test-header-link{
+  float: right;
+  color: #3ecdc6;
+  width: 50%;
+} 
+
+/* posts/index timeline */
 .posts-index-item {
   padding: 20px 30px;
   background-color: white;
@@ -387,7 +403,7 @@ img[data-test=post-image] {
   width: 100%;
 }
 
-/* posts/show ================================ */
+/* posts/show ================================ */ 
 .posts-show form {
   display: inline;
 }
