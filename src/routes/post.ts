@@ -59,7 +59,7 @@ postRouter.get("/:postId", ensureAuthUser, async (req, res, next) => {
     retweetCount,
     hasRetweeted,
     isFollowing,
-    currentUserId
+    currentUserId,
   });
 });
 

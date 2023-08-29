@@ -6,9 +6,12 @@ import {databaseManager} from "@/db/index";
 type FollowData = Pick<Follow, "followingId" | "followedId">; // 自信なし
 
 // 自分がフォローしているユーザーをカウントする
-export const getFollowingCount = async (followingId: number): Promise<number> => {
+export const getFollowingCount = async (
+  followingId: number
+): Promise<number> => {
   const prisma = databaseManager.getInstance();
-  const count = await prisma.follow.count({   // prisma.followingじゃなくていいのか？
+  const count = await prisma.follow.count({
+    // prisma.followingじゃなくていいのか？
     where: {
       followingId,
     },
@@ -19,8 +22,9 @@ export const getFollowingCount = async (followingId: number): Promise<number> =>
 // 自分をフォローしているユーザーをカウントする
 export const getFollowedCount = async (followedId: number): Promise<number> => {
   const prisma = databaseManager.getInstance();
-  const count = await prisma.follow.count({   // 【疑問】prisma.followedじゃなくていいのか？
-    where: { 
+  const count = await prisma.follow.count({
+    // 【疑問】prisma.followedじゃなくていいのか？
+    where: {
       followedId,
     },
   });
