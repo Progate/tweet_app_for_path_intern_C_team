@@ -12,19 +12,22 @@
         </svg>
         <p1 data-test="user-following"><%= FollowCount %> Following</p1>
       </div>
-
-      <% if(currentUser.id === user.id) { %>
-        <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
-      <% } else { %>
-        <div class="button">
-          <%let isFollowing = true; %>
-          <% if(isFollowing === false) { %>
-            <div class="follow-button">Follow</div>
-          <% } else { %>
-            <div class="following-button">Following</div>
-          <% }  %>
-        </div>
-      <% } %> 
+      
+      <% if(currentUser.id !== user.id) { %>
+        <% if(!isFollowing) { %>
+          <form action="/users/<%= user.id %>/follow" method="POST" data-test="form-follow">
+            <button class="follow-button">
+              Follow
+            </button>
+          </form>
+        <% } else { %>
+          <form action="/users/<%= user.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
+            <button class="following-button">
+              Following
+            </button>
+          </form>
+        <% } %>
+      <% } %>
     </div>
 
     <ul class="user-tabs">

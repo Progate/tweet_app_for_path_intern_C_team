@@ -22,6 +22,8 @@ import {
 import {ensureCorrectUser} from "@/middlewares/current_user";
 import {body, validationResult} from "express-validator";
 import {HashPassword} from "@/lib/hash_password";
+import {hasUserFollowed} from "@/models/follow";
+import {createFollow, deleteFollow} from "@/models/follow";
 
 export const userRouter = express.Router();
 
@@ -70,12 +72,22 @@ userRouter.get("/:userId", ensureAuthUser, async (req, res, next) => {
   const FollowerCount = await getFollowerCount(Number(userId));
   if (!userTimeline)
     return next(new Error("Invalid error: The user is undefined."));
+
+  const currentUserId = req.authentication?.currentUserId;
+  if (currentUserId === undefined) {
+    // `ensureAuthUser` enforces `currentUserId` is not undefined.
+    // This must not happen.
+    return next(new Error("Invalid error: currentUserId is undefined."));
+  }
+
   const {user, timeline} = userTimeline;
+  const isFollowing = await hasUserFollowed(currentUserId, Number(userId));
   res.render("users/show", {
     user,
     FollowerCount,
     FollowCount,
     timeline,
+    isFollowing,
   });
 });
 
@@ -189,6 +201,37 @@ userRouter.patch(
       imageName: req.file ? req.file.path.replace("public", "") : undefined,
     });
     req.dialogMessage?.setMessage("Your account has been updated successfully");
+    res.redirect(`/users/${userId}`);
+  }
+);
+
+userRouter.post("/:userId/follow", ensureAuthUser, async (req, res, next) => {
+  const {userId} = req.params;
+  const currentUserId = req.authentication?.currentUserId;
+  if (currentUserId === undefined) {
+    // `ensureAuthUser` enforces `currentUserId` is not undefined.
+    // This must not happen.
+    return next(new Error("Invalid error: currentUserId is undefined."));
+  }
+  await createFollow({followingId: currentUserId, followedId: Number(userId)});
+  res.redirect(`/users/${userId}`);
+});
+
+userRouter.delete(
+  "/:userId/unfollow",
+  ensureAuthUser,
+  async (req, res, next) => {
+    const {userId} = req.params;
+    const currentUserId = req.authentication?.currentUserId;
+    if (currentUserId === undefined) {
+      // `ensureAuthUser` enforces `currentUserId` is not undefined.
+      // This must not happen.
+      return next(new Error("Invalid error: currentUserId is undefined."));
+    }
+    await deleteFollow({
+      followingId: currentUserId,
+      followedId: Number(userId),
+    });
     res.redirect(`/users/${userId}`);
   }
 );
