@@ -19,14 +19,14 @@ postRouter.get("/", ensureAuthUser, async (req, res) => {
 });
 
 postRouter.get("/following", ensureAuthUser, async (req, res, next) => {
-	const currentUserId = req.authentication?.currentUserId;
-	if (currentUserId === undefined) {
-		return next(new Error("Invalid error: currentUserId is undefined."));
-	}
-	const timeline = await getFollowingPostTimeline(String(currentUserId));
-	res.render("posts/following", {
-		timeline,
-	});
+  const currentUserId = req.authentication?.currentUserId;
+  if (currentUserId === undefined) {
+    return next(new Error("Invalid error: currentUserId is undefined."));
+  }
+  const timeline = await getFollowingPostTimeline(String(currentUserId));
+  res.render("posts/following", {
+    timeline,
+  });
 });
 
 postRouter.get("/new", ensureAuthUser, (req, res) => {

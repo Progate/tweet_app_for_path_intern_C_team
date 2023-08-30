@@ -225,15 +225,19 @@ export const getFollowerCount = async (userId: number): Promise<number> => {
   return count;
 };
 
-export const getFollowingUserIds = async (userId: number): Promise<number[]> => {
-	const prisma = databaseManager.getInstance();
+export const getFollowingUserIds = async (
+  userId: number
+): Promise<number[]> => {
+  const prisma = databaseManager.getInstance();
 
-	const followingUserIds = await prisma.user.findUnique({
-		where: { id: userId }
-	}).following({
-		select: { followedId: true }
-	});
+  const followingUserIds = await prisma.user
+    .findUnique({
+      where: {id: userId},
+    })
+    .following({
+      select: {followedId: true},
+    });
 
-	const followingIds = followingUserIds?.map(user => user.followedId) ?? [];
-	return followingIds;
+  const followingIds = followingUserIds?.map(user => user.followedId) ?? [];
+  return followingIds;
 };
