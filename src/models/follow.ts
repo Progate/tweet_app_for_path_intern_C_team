@@ -70,3 +70,34 @@ export const hasUserFollowed = async (
   });
   return follow !== null;
 };
+
+export const getFollowedUser = async (
+  followedId: number
+): Promise<any> => {
+  const prisma = databaseManager.getInstance();
+  const follow = await prisma.follow.findMany({
+    where: {
+      followedId,
+    },
+    select: {
+      followed: true,
+    }
+  });
+  return follow 
+};
+
+
+export const getFollowingUser = async (
+  followingId: number,
+): Promise<any> => {
+  const prisma = databaseManager.getInstance();
+  const follow = await prisma.follow.findMany({
+    where: {
+      followingId,
+    },
+    select: {
+      following: true,
+    }
+  });
+  return follow 
+};
