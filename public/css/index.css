@@ -109,36 +109,72 @@ body {
 }
 
 .follow-button{
+  position: relative;
   color: white;
   background: #3ECDC6;
   border: 0px;
   width: 121px;
   height: 34px;
-  top: 20px;
-  left: 30px;
   padding: 8px 32px;
   border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  float: right;
+  display: inline-block;
+}
+
+.follow-button:hover{
+  opacity: 0.5;
 }
 
 .following-button{
+  position: relative;
   color: #3ECDC6;
   background: white;
   border: 1px solid;
   border-color: #3ECDC6;
   width: 121px;
   height: 34px;
-  top: 20px;
-  left: 30px;
   padding: 8px 32px;
   border-radius: 2px;
-  align-items: center;
   cursor: pointer;
-  float: right;
+  display: inline-block;
+  line-height: 34px;
+  overflow: hidden;
+}
+
+.following-button:hover{
+  color: #E75252;
+  background-color: rgba(231, 82, 82, 0.10);
+  border: 1px solid;
+  border-color: #E75252;
+}
+
+/* ボタンのテキスト */
+.button-text{
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+/* ボタンのテキスト(デフォルトのテキスト) */
+.button-text:nth-child(1) {
+  top: 0;
+}
+
+/* ボタンのテキスト(隠れているテキスト) */
+.button-text:nth-child(2) {
+  top: -100%;
+}
+
+/* ボタンホバーアクション */
+.following-button:hover .button-text:nth-child(1) {
+  top: 100%;
+}
+
+.following-button:hover .button-text:nth-child(2) {
+  top: 0;
 }
 
 /* header ================================ */
@@ -492,29 +528,6 @@ img[data-test=post-image] {
   font-size: 14px;
 }
 
-.follow-btn{
-  display: inline-flex;
-  padding: 8px 32px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.follow-btn.follow{
-  border-radius: 2px;
-  background: #3ECDC6;
-}
-
-.follow-btn.following{
-  border-radius: 2px;
-  border: 1px solid #3ECDC6;
-}
-
-.follow-btn.unfollow{
-  border-radius: 2px;
-  border: 1px solid var(--red, #E75252);
-  background: rgba(231, 82, 82, 0.10);
-}
-
 /* posts/new ================================ */
 .posts-new textarea {
   font-size: 20px;
@@ -690,10 +703,8 @@ input[type="checkbox"] {
   font-weight: 200;
 }
 
-.user span {
-  color: #afb6bf;
-  font-weight: 200;
-  padding: 0 6px 0 8px;
+.user .following-button{
+  margin-top: 10px;
 }
 
 .user-tabs {
