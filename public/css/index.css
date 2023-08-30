@@ -340,21 +340,11 @@ header {
   justify-content: space-between;
 }
 
-/* .post-header-heading{
-  float: left;
-  width: 50%;
-}
-
-.post-header-link{
-  float: right;
-  width: 50%; 
-} */
-
-.post-header-link a{
+.post-header a{
   font-weight: 600;
 } 
 
-.post-header-link a:hover{
+.post-header a:hover{
   color: #3ecdc6;
 }
 
