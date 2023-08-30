@@ -4,6 +4,7 @@ import {formatDate} from "@/lib/convert_date";
 import {getPost, createPost, updatePost, deletePost} from "@/models/post";
 import {getPostRetweetedCount, hasUserRetweetedPost} from "@/models/retweet";
 import {getAllPostTimeline} from "@/models/user_timeline";
+import {getFollowingPostTimeline} from "@/models/user_timeline";
 import {getPostLikedCount, hasUserLikedPost} from "@/models/like";
 import {ensureAuthUser} from "@/middlewares/authentication";
 import {ensureOwnerOfPost} from "@/middlewares/current_user";
@@ -17,11 +18,15 @@ postRouter.get("/", ensureAuthUser, async (req, res) => {
   });
 });
 
-postRouter.get("/following", ensureAuthUser, async (req, res) => {
-  const timeline = await getAllPostTimeline();
-  res.render("posts/following", {
-    timeline,
-  });
+postRouter.get("/following", ensureAuthUser, async (req, res, next) => {
+	const currentUserId = req.authentication?.currentUserId;
+	if (currentUserId === undefined) {
+		return next(new Error("Invalid error: currentUserId is undefined."));
+	}
+	const timeline = await getFollowingPostTimeline(String(currentUserId));
+	res.render("posts/following", {
+		timeline,
+	});
 });
 
 postRouter.get("/new", ensureAuthUser, (req, res) => {
