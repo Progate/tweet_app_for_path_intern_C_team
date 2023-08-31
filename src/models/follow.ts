@@ -80,7 +80,7 @@ export const getFollowedUser = async (
       followedId,
     },
     select: {
-      followed: true,
+      following: true,
     }
   });
   return follow 
@@ -96,7 +96,7 @@ export const getFollowingUser = async (
       followingId,
     },
     select: {
-      following: true,
+      followed: true,
     }
   });
   return follow 

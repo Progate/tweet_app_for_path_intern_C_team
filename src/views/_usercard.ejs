@@ -1,9 +1,8 @@
 <% FollowedUser.forEach(user => { %>
-    <%= console.log(user)%>
     <div class="follow-user-card">
         <div>
-            <img  class="user-img" src="<%= user.followed.imageName %>">
-            <p><%= user.followed.name%></p>
+            <img  class="user-img" src="<%= user.following.imageName %>">
+            <p><%= user.following.name%></p>
         </div>
         <div class="following-button">Following</div>
     </div>
