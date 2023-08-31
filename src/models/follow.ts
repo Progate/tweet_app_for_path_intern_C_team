@@ -71,9 +71,7 @@ export const hasUserFollowed = async (
   return follow !== null;
 };
 
-export const getFollowedUser = async (
-  followedId: number
-): Promise<any> => {
+export const getFollowedUser = async (followedId: number): Promise<any> => {
   const prisma = databaseManager.getInstance();
   const follow = await prisma.follow.findMany({
     where: {
@@ -81,15 +79,12 @@ export const getFollowedUser = async (
     },
     select: {
       following: true,
-    }
+    },
   });
-  return follow 
+  return follow;
 };
 
-
-export const getFollowingUser = async (
-  followingId: number,
-): Promise<any> => {
+export const getFollowingUser = async (followingId: number): Promise<any> => {
   const prisma = databaseManager.getInstance();
   const follow = await prisma.follow.findMany({
     where: {
@@ -97,7 +92,7 @@ export const getFollowingUser = async (
     },
     select: {
       followed: true,
-    }
+    },
   });
-  return follow 
+  return follow;
 };
