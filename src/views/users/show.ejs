@@ -16,7 +16,28 @@
           <p1 data-test="user-following"><%= FollowCount %> Following</p1>
         </a>
       </div>
+      <% if(currentUser.id !== user.id) { %>
+            <% if(!isFollowing) { %>
+              <div class="user-follow-button">
+                <form action="/users/<%= user.id %>/follow" method="POST" data-test="form-follow">
+                  <button class="follow-button">
+                    Follow
+                  </button>
+                </form>
+              </div>
+            <% } else { %>
+              <div class="user-follow-button">
+                <form action="/users/<%= user.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
+                  <button class="following-button">
+                    Following
+                  </button>
+                </form>
+              </div>
+            <% } %>
+        <% } %>
     </div>
+     
+      
 
     <div id="openfollow" class="Modal">
       <div>
@@ -46,6 +67,7 @@
           <%- include('../_usercard', {FollowingUser:FollowingUser}); %>
         </div>
       </div>
+<<<<<<< HEAD
       
 
       <div id="openfollower" class="Modal">
@@ -67,7 +89,10 @@
           </form>
         <% } %>
       <% } %>
+=======
+>>>>>>> c978da0 (fix commit)
     </div>
+      
 
     <ul class="user-tabs">
       <li class="active">
