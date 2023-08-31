@@ -760,3 +760,65 @@ input[type="checkbox"] {
   top: -10px;
   width: 24px;
 }
+
+.follow-menu {
+  display: flex;
+  padding: 15px 16px;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF;
+  box-shadow: 0px 2px 6px 0px #C1CED7;
+}
+
+.follow-menu div{
+  display: flex;
+  align-items:stretch;
+  align-items: center;
+}
+.follow-menu a {
+  color: #AFB6BF;
+}
+
+.follow-menu div .active{
+  border-bottom: 2px solid #3ECDC6;
+}
+
+.follow-menu div .active a{
+  color: black;
+}
+
+.follow-menu a{
+  font-family: Avenir Next;
+  font-size: 14px;
+  font-style: normal;
+  margin: 0px 12.5px;
+  font-weight: 400;
+  line-height: 23.8px; /* 170% */
+  letter-spacing: 1px;
+}
+
+.follow-user-card{
+  display: flex;
+  justify-content: space-between;
+  height: 98.7px;
+  padding: 20px 30px;
+  align-items:center;
+  background: #FFF;
+  box-shadow: 0px 2px 6px 0px #C1CED7;
+}
+
+.follow-user-card div{
+  display: flex;
+  align-items:stretch;
+  align-items: center;
+  gap: 26px;
+}
+
+.user-img{
+  border-radius: 20px;
+  width: 50px;
+  height: 50px; 
+}
+.follow-scroll{
+  overflow:scroll
+}
