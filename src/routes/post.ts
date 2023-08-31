@@ -4,14 +4,27 @@ import {formatDate} from "@/lib/convert_date";
 import {getPost, createPost, updatePost, deletePost} from "@/models/post";
 import {getPostRetweetedCount, hasUserRetweetedPost} from "@/models/retweet";
 import {getAllPostTimeline} from "@/models/user_timeline";
+import {getFollowingPostTimeline} from "@/models/user_timeline";
 import {getPostLikedCount, hasUserLikedPost} from "@/models/like";
 import {ensureAuthUser} from "@/middlewares/authentication";
 import {ensureOwnerOfPost} from "@/middlewares/current_user";
+import {hasUserFollowed} from "@/models/follow";
 export const postRouter = express.Router();
 
 postRouter.get("/", ensureAuthUser, async (req, res) => {
   const timeline = await getAllPostTimeline();
   res.render("posts/index", {
+    timeline,
+  });
+});
+
+postRouter.get("/following", ensureAuthUser, async (req, res, next) => {
+  const currentUserId = req.authentication?.currentUserId;
+  if (currentUserId === undefined) {
+    return next(new Error("Invalid error: currentUserId is undefined."));
+  }
+  const timeline = await getFollowingPostTimeline(String(currentUserId));
+  res.render("posts/following", {
     timeline,
   });
 });
@@ -37,8 +50,10 @@ postRouter.get("/:postId", ensureAuthUser, async (req, res, next) => {
     // This must not happen.
     return next(new Error("Invalid error: currentUserId is undefined."));
   }
+
   const likeCount = await getPostLikedCount(post.id);
   const hasLiked = await hasUserLikedPost(currentUserId, post.id);
+  const isFollowing = await hasUserFollowed(currentUserId, post.userId);
   const retweetCount = await getPostRetweetedCount(post.id);
   const hasRetweeted = await hasUserRetweetedPost(currentUserId, post.id);
   res.render("posts/show", {
@@ -48,6 +63,8 @@ postRouter.get("/:postId", ensureAuthUser, async (req, res, next) => {
     hasLiked,
     retweetCount,
     hasRetweeted,
+    isFollowing,
+    currentUserId,
   });
 });
 

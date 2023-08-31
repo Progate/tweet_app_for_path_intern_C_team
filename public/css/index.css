@@ -80,6 +80,103 @@ body {
   clear: both;
 }
 
+.follow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.follow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.follow-button{
+  position: relative;
+  color: white;
+  background: #3ECDC6;
+  border: 0px;
+  width: 121px;
+  height: 34px;
+  padding: 8px 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.follow-button:hover{
+  opacity: 0.5;
+}
+
+.following-button{
+  position: relative;
+  color: #3ECDC6;
+  background: white;
+  border: 1px solid;
+  border-color: #3ECDC6;
+  width: 121px;
+  height: 34px;
+  padding: 8px 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 34px;
+  overflow: hidden;
+}
+
+.following-button:hover{
+  color: #E75252;
+  background-color: rgba(231, 82, 82, 0.10);
+  border: 1px solid;
+  border-color: #E75252;
+}
+
+/* ボタンのテキスト */
+.button-text{
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+/* ボタンのテキスト(デフォルトのテキスト) */
+.button-text:nth-child(1) {
+  top: 0;
+}
+
+/* ボタンのテキスト(隠れているテキスト) */
+.button-text:nth-child(2) {
+  top: -100%;
+}
+
+/* ボタンホバーアクション */
+.following-button:hover .button-text:nth-child(1) {
+  top: 100%;
+}
+
+.following-button:hover .button-text:nth-child(2) {
+  top: 0;
+}
+
 /* header ================================ */
 header {
   height: 64px;
@@ -188,6 +285,17 @@ header {
   width: 84%;
 }
 
+.about-main p1 { /* Followers, Followings */
+  color: var(--color-opacity-87-black, #212121);
+  font-family: Avenir Next;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 1px;
+  }
+  
+
 /* form ================================ */
 .form {
   max-width: 600px;
@@ -261,11 +369,33 @@ header {
 }
 
 /* posts/index ================================ */
+.post-header{
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-header a{
+  font-weight: 600;
+} 
+
+.post-header a:hover{
+  color: #3ecdc6;
+}
+
+.arrow-forward{
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* posts/index timeline */
 .posts-index-item {
   padding: 20px 30px;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
+  clear: both;
 }
 
 .post-left img {
@@ -301,7 +431,7 @@ img[data-test=post-image] {
   width: 100%;
 }
 
-/* posts/show ================================ */
+/* posts/show ================================ */ 
 .posts-show form {
   display: inline;
 }
@@ -437,7 +567,7 @@ img[data-test=post-image] {
 }
 
 .comments-index-item {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
 }
 
@@ -563,10 +693,8 @@ input[type="checkbox"] {
   font-weight: 200;
 }
 
-.user span {
-  color: #afb6bf;
-  font-weight: 200;
-  padding: 0 6px 0 8px;
+.user .following-button{
+  margin-top: 10px;
 }
 
 .user-tabs {
@@ -597,4 +725,108 @@ input[type="checkbox"] {
 /* users/new, users/edit ================================ */
 .users-form input {
   margin-bottom: 15px;
+}
+
+/* Modal-Test ================================ */
+.Modal {
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  opacity:0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.Modal:target {
+  opacity:1;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.Modal > div {
+  text-align: center;
+  margin: 150px auto;
+  height: 450px;
+  width: 530px;
+  background: #fff;
+}
+
+.close {
+  color: #FFFFFF;
+  border-radius: 12px;
+  z-index: -1;
+  top: -10px;
+  width: 24px;
+}
+
+.follow-menu {
+  display: flex;
+  padding: 15px 16px;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF;
+  box-shadow: 0px 2px 6px 0px #C1CED7;
+}
+
+.user-follow-button{
+  margin-top: 15px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+.follow-menu div{
+  display: flex;
+  align-items:stretch;
+  align-items: center;
+}
+.follow-menu a {
+  color: #AFB6BF;
+}
+
+.follow-menu div .active{
+  border-bottom: 2px solid #3ECDC6;
+}
+
+.follow-menu div .active a{
+  color: black;
+}
+
+.follow-menu a{
+  font-family: Avenir Next;
+  font-size: 14px;
+  font-style: normal;
+  margin: 0px 12.5px;
+  font-weight: 400;
+  line-height: 23.8px; /* 170% */
+  letter-spacing: 1px;
+}
+
+.follow-user-card{
+  display: flex;
+  justify-content: space-between;
+  height: 98.7px;
+  padding: 20px 30px;
+  align-items:center;
+  background: #FFF;
+  box-shadow: 0px 2px 6px 0px #C1CED7;
+}
+
+.follow-user-card div{
+  display: flex;
+  align-items:stretch;
+  align-items: center;
+  gap: 26px;
+}
+
+.user-img{
+  border-radius: 20px;
+  width: 50px;
+  height: 50px; 
+}
+.follow-scroll{
+  overflow:scroll
 }

@@ -2,8 +2,10 @@ import {Post} from "@prisma/client";
 import {databaseManager} from "@/db/index";
 import {
   selectUserColumnsWithoutPassword,
+  getFollowingUserIds,
   type UserWithoutPassword,
 } from "@/models/user";
+import {get} from "http";
 
 type PostData = Pick<Post, "content" | "userId">;
 export type PostWithUser = Post & {user: UserWithoutPassword};
@@ -84,4 +86,37 @@ export const getAllPosts = async (): Promise<PostWithUser[]> => {
     },
   });
   return post;
+};
+
+export const getFollowingPosts = async (
+  userId: number
+): Promise<PostWithUser[]> => {
+  const prisma = databaseManager.getInstance();
+
+  const followingUserIds = await getFollowingUserIds(userId);
+
+  const posts = await prisma.post.findMany({
+    where: {
+      userId: {
+        in: followingUserIds,
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: {
+      id: true,
+      content: true,
+      userId: true,
+      createdAt: true,
+      updatedAt: true,
+      user: {
+        select: {
+          ...selectUserColumnsWithoutPassword,
+        },
+      },
+    },
+  });
+
+  return posts.map(post => ({...post, user: post.user as UserWithoutPassword}));
 };

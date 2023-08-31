@@ -4,6 +4,22 @@
       <div class="post-user-name">
         <img class="posts-show-item-image" src="<%= post.user.imageName %>" data-test="user-image">
         <a href="/users/<%= post.user.id %>" data-test="user-name"><%= post.user.name %></a>
+        <% if(post.user.id !== currentUser.id) { %>
+          <% if(!isFollowing) { %>
+            <form action="/posts/<%= post.id %>/follow" method="POST" data-test="form-follow">
+              <button class="follow-button">
+                Follow
+              </button>
+            </form>
+          <% } else { %>
+            <form action="/posts/<%= post.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
+              <button class="following-button">
+                <span class="button-text">Following</span>
+                <span class="button-text">Unfollow</span>
+              </button>
+            </form>
+          <% } %>
+        <% } %>
       </div>
       <p data-test="post-content">
         <%= post.content %>

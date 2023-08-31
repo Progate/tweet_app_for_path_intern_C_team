@@ -20,7 +20,9 @@ model User {
   updatedAt DateTime @map("updated_at") @default(now())
   posts Post[]
   likes Like[]
-  retweets Retweet[]
+  retweets Retweet []
+  following Follow[] @relation("Following")
+  followed Follow[] @relation("Followed")
   @@map("users")
 }
 
@@ -54,4 +56,15 @@ model Retweet {
   retweetedAt DateTime @map("retweeted_at") @default(now())
   @@id([userId, postId])
   @@map("retweets")
+}
+
+// 2023/08/20 藤澤追記
+model Follow {
+  following User @relation("Following", fields: [followingId], references: [id])
+  followingId Int @map("following_id")
+  followed User @relation("Followed", fields: [followedId], references: [id])
+  followedId Int @map("followed_id")
+  followedAt DateTime @map("followed_at") @default(now())
+  @@id([followingId, followedId])
+  @@map("Follow")
 }

@@ -1,10 +1,10 @@
-import {PostWithUser, getAllPosts} from "./post";
+import {PostWithUser, getAllPosts, getFollowingPosts} from "./post";
 import {
   getUserWithPostsIncludeRetweet,
   UserWithoutPassword,
   getUserLikedPosts,
 } from "./user";
-import {getAllRetweetedPosts} from "./retweet";
+import {getAllRetweetedPosts, getFollowingRetweetedPosts} from "./retweet";
 
 type TweetType = "tweet" | "retweet" | "like";
 
@@ -23,6 +23,37 @@ type UserTimeline = {
 export const getAllPostTimeline = async (): Promise<Timeline[]> => {
   const posts = await getAllPosts();
   const retweetPosts = await getAllRetweetedPosts();
+  const timeline: Timeline[] = posts
+    .map((post): Timeline => {
+      return {
+        type: "tweet",
+        post,
+        user: post.user,
+        activedAt: post.createdAt,
+      };
+    })
+    .concat(
+      retweetPosts.map((retweet): Timeline => {
+        return {
+          type: "retweet",
+          post: retweet.post,
+          user: retweet.user,
+          activedAt: retweet.retweetedAt,
+        };
+      })
+    );
+
+  timeline.sort((a, b) => {
+    return b.activedAt.getTime() - a.activedAt.getTime();
+  });
+  return timeline;
+};
+
+export const getFollowingPostTimeline = async (
+  loggedInUserId: string
+): Promise<Timeline[]> => {
+  const posts = await getFollowingPosts(Number(loggedInUserId));
+  const retweetPosts = await getFollowingRetweetedPosts(Number(loggedInUserId));
   const timeline: Timeline[] = posts
     .map((post): Timeline => {
       return {

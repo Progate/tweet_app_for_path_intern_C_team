@@ -204,3 +204,40 @@ export const getUserByEmailWithPassword = async (
   });
   return user;
 };
+
+export const getFollowCount = async (userId: number): Promise<number> => {
+  const prisma = databaseManager.getInstance();
+  const count = await prisma.follow.count({
+    where: {
+      followingId: userId,
+    },
+  });
+  return count;
+};
+
+export const getFollowerCount = async (userId: number): Promise<number> => {
+  const prisma = databaseManager.getInstance();
+  const count = await prisma.follow.count({
+    where: {
+      followedId: userId,
+    },
+  });
+  return count;
+};
+
+export const getFollowingUserIds = async (
+  userId: number
+): Promise<number[]> => {
+  const prisma = databaseManager.getInstance();
+
+  const followingUserIds = await prisma.user
+    .findUnique({
+      where: {id: userId},
+    })
+    .following({
+      select: {followedId: true},
+    });
+
+  const followingIds = followingUserIds?.map(user => user.followedId) ?? [];
+  return followingIds;
+};

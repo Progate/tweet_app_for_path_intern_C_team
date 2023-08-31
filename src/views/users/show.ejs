@@ -4,10 +4,96 @@
       <img src="<%= user.imageName %>" data-test="user-image">
       <h2 data-test="user-name"><%= user.name %></h2>
       <p data-test="user-email"><%= user.email %></p>
-      <% if(currentUser.id === user.id) { %>
-        <a href="<%= `/users/${user.id}/edit` %>">Edit</a>
-      <% } %>
+
+      <div class="follow">
+        <a href="#openfollow">
+          <p1 data-test="user-followerd"><%= FollowerCount %> Followers</p1>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+          <path d="M1 0V24" stroke="#9E9E9E" stroke-width="0.5"/>
+        </svg>
+        <a href="#openfollower">
+          <p1 data-test="user-following"><%= FollowCount %> Following</p1>
+        </a>
+      </div>
+      <% if(currentUser.id !== user.id) { %>
+            <% if(!isFollowing) { %>
+              <div class="user-follow-button">
+                <form action="/users/<%= user.id %>/follow" method="POST" data-test="form-follow">
+                  <button class="follow-button">
+                    Follow
+                  </button>
+                </form>
+              </div>
+            <% } else { %>
+              <div class="user-follow-button">
+                <form action="/users/<%= user.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
+                  <button class="following-button">
+                    Following
+                  </button>
+                </form>
+              </div>
+            <% } %>
+        <% } %>
     </div>
+     
+      
+
+    <div id="openfollow" class="Modal">
+      <div>
+
+        <ul class="follow-menu">
+          <div>
+            <div class = "active">
+                <a href="#openfollower">Followers</a>
+            </div>
+
+            <div>
+              <a href="#openfollow">Following</a>
+            </div>   
+          </div>
+           
+
+          <div>
+            <a href="#close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                <path d="M19 7.31039L17.59 5.90039L12 11.4904L6.41 5.90039L5 7.31039L10.59 12.9004L5 18.4904L6.41 19.9004L12 14.3104L17.59 19.9004L19 18.4904L13.41 12.9004L19 7.31039Z" fill="#16325C"/>
+              </svg>
+            </a>
+          </div>
+        </ul>
+
+        <div class="follow-scroll">
+          <%- include('../_usercard', {FollowingUser:FollowingUser}); %>
+        </div>
+      </div>
+<<<<<<< HEAD
+      
+
+      <div id="openfollower" class="Modal">
+      </div>
+      
+      <% if(currentUser.id !== user.id) { %>
+        <% if(!isFollowing) { %>
+          <form action="/users/<%= user.id %>/follow" method="POST" data-test="form-follow">
+            <button class="follow-button">
+              Follow
+            </button>
+          </form>
+        <% } else { %>
+          <form action="/users/<%= user.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
+            <button class="following-button">
+              <span class="button-text">Following</span>
+              <span class="button-text">Unfollow</span>
+            </button>
+          </form>
+        <% } %>
+      <% } %>
+=======
+>>>>>>> c978da0 (fix commit)
+    </div>
+      
+
     <ul class="user-tabs">
       <li class="active">
         <a href="<%= `/users/${user.id}` %>">Posts</a>
