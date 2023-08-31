@@ -23,7 +23,8 @@
         <% } else { %>
           <form action="/users/<%= user.id %>/unfollow?_method=DELETE" method="POST" data-test="form-follow">
             <button class="following-button">
-              Following
+              <span class="button-text">Following</span>
+              <span class="button-text">Unfollow</span>
             </button>
           </form>
         <% } %>
